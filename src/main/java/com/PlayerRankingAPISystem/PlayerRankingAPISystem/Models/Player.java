@@ -1,6 +1,7 @@
 package com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Data
 @Table(name = "players")
 public class Player extends BaseEntity{
 
@@ -16,7 +18,7 @@ public class Player extends BaseEntity{
     @Column(name = "id")
     private Long id;
 
-    private String name;
+    private String playerName;
 
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private List<Score> scores;

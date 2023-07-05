@@ -1,6 +1,7 @@
 package com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models;
 
 import jakarta.persistence.*;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,6 +9,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
+@Data
 @Table(name = "scores")
 public class Score extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
