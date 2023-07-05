@@ -16,5 +16,5 @@ public class MatchMarker {
     private Long id;
 
     private boolean isAdmin;
-    
+
 }
