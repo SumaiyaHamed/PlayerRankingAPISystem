@@ -9,8 +9,9 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "scores")
-public class Score {
-
+public class Score extends BaseEntity{
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     @Id
     private Long id;
 

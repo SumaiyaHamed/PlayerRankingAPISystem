@@ -1,8 +1,6 @@
 package com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +8,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "ranks")
-public class RankManagement {
+public class RankManagement extends BaseEntity{
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     @Id
     private Long id;
     private int rank;
