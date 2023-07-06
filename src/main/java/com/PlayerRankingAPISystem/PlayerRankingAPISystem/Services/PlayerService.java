@@ -6,10 +6,11 @@ import com.PlayerRankingAPISystem.PlayerRankingAPISystem.RequestObject.PlayerReq
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Optional;
+
 @Service
 public class PlayerService {
 
@@ -25,8 +26,17 @@ public class PlayerService {
         return ResponseEntity.ok(player);
     }
 
-    public Player getPlayerById(Integer id) {
-        return playerRepository.getPlayerById(id);
+//    public Player getPlayerById(Integer id) {
+//        return playerRepository.getPlayerById(id);
+//    }
+
+
+    public ResponseEntity<Optional<Player>> getPlayerById(@PathVariable Long id) {
+        Optional<Player> player = playerRepository.findById(Math.toIntExact(id));
+        if (player == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(player);
     }
 
 
