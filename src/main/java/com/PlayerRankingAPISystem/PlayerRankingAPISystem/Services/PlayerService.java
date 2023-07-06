@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 @Service
@@ -23,5 +24,11 @@ public class PlayerService {
         playerRepository.save(player);
         return ResponseEntity.ok(player);
     }
+
+    public Player getPlayerById(Integer id) {
+        return playerRepository.getPlayerById(id);
+    }
+
+
 
 }
