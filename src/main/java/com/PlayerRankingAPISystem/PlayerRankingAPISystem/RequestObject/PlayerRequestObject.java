@@ -33,7 +33,7 @@ public class PlayerRequestObject {
         List<Player> players = new ArrayList<>();
         if (!requestList.isEmpty()) {
             for (PlayerRequestObject playerRequest : requestList) {
-                players.add(convert(playerRequest));
+                players.add(convert (playerRequest));
             }
         }
         return players;

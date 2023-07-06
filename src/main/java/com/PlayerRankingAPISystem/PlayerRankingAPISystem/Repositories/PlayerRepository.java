@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface PlayerRepository extends JpaRepository<Score, Integer> {
+public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
     @Query("select p from players  c where p.id = :playerId")
     Player getPlayerById(@Param("playerId") Integer id);
