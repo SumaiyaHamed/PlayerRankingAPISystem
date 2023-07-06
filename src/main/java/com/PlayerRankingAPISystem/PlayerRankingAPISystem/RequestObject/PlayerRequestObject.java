@@ -29,7 +29,7 @@ public class PlayerRequestObject {
         return player;
     }
 
-    public static List<Player> convert(List<PlayerRequestObject> requestList) {
+    public static List<Player> convertAll(List<PlayerRequestObject> requestList) {
         List<Player> players = new ArrayList<>();
         if (!requestList.isEmpty()) {
             for (PlayerRequestObject playerRequest : requestList) {

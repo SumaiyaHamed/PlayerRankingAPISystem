@@ -9,7 +9,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
 public class PlayerService {
@@ -18,27 +20,38 @@ public class PlayerService {
 @Autowired
     PlayerRepository playerRepository;
 
-
+    CopyOnWriteArrayList<Player> listOfStudents= new CopyOnWriteArrayList<>();
 
     public ResponseEntity<Player> createPlayer(@RequestBody PlayerRequestObject playerRequestObject) {
         Player player = playerRequestObject.convert(playerRequestObject);
+        listOfStudents.add(player);
         playerRepository.save(player);
         return ResponseEntity.ok(player);
     }
 
-//    public Player getPlayerById(Integer id) {
-//        return playerRepository.getPlayerById(id);
+
+    public Player getSpecificPlayerById(Long id) {
+
+        Player foundPlayer= null;
+        Optional<Player>optionalPlayer =playerRepository.findById(id);
+        if (optionalPlayer.isPresent()){
+            foundPlayer=optionalPlayer.get();
+        }
+        return foundPlayer;
+    }
+
+
+//    public List<Player> getAllPlayers() {
+//        return playerRepository.getAllPlayers();
 //    }
 
 
-    public ResponseEntity<Optional<Player>> getPlayerById(@PathVariable Long id) {
-        Optional<Player> player = playerRepository.findById(Math.toIntExact(id));
-        if (player == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(player);
+    public String deletePlayerById(Long id) {
+        Player player = playerRepository.getPlayerById(id);
+        player.setIsActive(false);
+        playerRepository.save(player);
+        return "Player Id " + id + "Deleted Successfully ";
     }
-
 
 
 }
