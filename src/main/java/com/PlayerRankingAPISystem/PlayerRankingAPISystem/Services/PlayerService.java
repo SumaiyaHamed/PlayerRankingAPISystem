@@ -6,7 +6,6 @@ import com.PlayerRankingAPISystem.PlayerRankingAPISystem.RequestObject.PlayerReq
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
@@ -41,17 +40,16 @@ public class PlayerService {
     }
 
 
-//    public List<Player> getAllPlayers() {
-//        return playerRepository.getAllPlayers();
-//    }
+    public List<Player> getAllPlayers() {
+        return playerRepository.findAll();
+    }
 
 
-    public String deletePlayerById(Long id) {
+    public String deleteSpecificPlayerById(Long id) {
         Player player = playerRepository.getPlayerById(id);
         player.setIsActive(false);
         playerRepository.save(player);
         return "Player Id " + id + "Deleted Successfully ";
     }
-
 
 }

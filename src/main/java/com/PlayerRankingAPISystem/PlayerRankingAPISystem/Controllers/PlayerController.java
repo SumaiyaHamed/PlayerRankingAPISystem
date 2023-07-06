@@ -28,14 +28,22 @@ public class PlayerController {
         return playerService.getSpecificPlayerById(id);
     }
 
-//    @GetMapping("all")
-//    public List<PlayerResponseObject> getAllPlayers() {
-//        List<Player> listOfPlayers = playerService.getAllPlayers();
-//        List<PlayerResponseObject> playerResponseList = PlayerResponseObject.convertRequestListToResponseList(listOfPlayers);
-//        return playerResponseList;
-//    }
+    @GetMapping("all")
+    public List<PlayerResponseObject> getAllPlayers() {
+        List<Player> listOfPlayers = playerService.getAllPlayers();
+        List<PlayerResponseObject> playerResponseList = PlayerResponseObject.convertRequestListToResponseList(listOfPlayers);
+        return playerResponseList;
+    }
 
-  
+    @DeleteMapping(path = "{id}")
+    public String deleteSpecificPlayerById(@PathVariable(name = "id") Long id) {
+        try {
+            playerService.deleteSpecificPlayerById(id);
+        } catch (Exception e) {
+            return "Deleting Failed Please Check The Id";
+        }
+        return " Customer Id " + id + " Deleted Successfully ";
+    }
 
 
 }

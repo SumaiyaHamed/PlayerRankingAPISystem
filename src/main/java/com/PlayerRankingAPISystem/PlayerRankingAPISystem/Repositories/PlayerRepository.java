@@ -14,8 +14,7 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     @Query("select p from players p where p.id = :playerId")
     Player getPlayerById(@Param("playerId") Long id);
 
-//    @Query("select p from players p")
-//    List<Player> getAllPlayers();
+
 
 
 }
