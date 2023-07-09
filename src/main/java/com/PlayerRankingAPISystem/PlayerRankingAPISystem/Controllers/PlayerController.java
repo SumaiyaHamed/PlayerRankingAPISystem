@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,6 +44,10 @@ public class PlayerController {
             return "Deleting Failed Please Check The Id";
         }
         return " Customer Id " + id + " Deleted Successfully ";
+    }
+@PutMapping
+    public void updatePlayerDetails(@RequestBody PlayerRequestObject playerRequestObject) {
+        playerService.updatePlayerDetails(playerRequestObject);
     }
 
 

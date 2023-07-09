@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -21,7 +22,7 @@ public class PlayerService {
 
     CopyOnWriteArrayList<Player> listOfStudents= new CopyOnWriteArrayList<>();
 
-    public ResponseEntity<Player> createPlayer(@RequestBody PlayerRequestObject playerRequestObject) {
+    public ResponseEntity<Player> createPlayer( PlayerRequestObject playerRequestObject) {
         Player player = playerRequestObject.convert(playerRequestObject);
         listOfStudents.add(player);
         playerRepository.save(player);
@@ -51,5 +52,14 @@ public class PlayerService {
         playerRepository.save(player);
         return "Player Id " + id + "Deleted Successfully ";
     }
+
+    public void updatePlayerDetails(PlayerRequestObject playerRequestObject) {
+        Player player = playerRepository.getPlayerById(playerRequestObject.getId());
+        player.setPlayerName(playerRequestObject.getPlayerName());
+        player.setUpdatedDate(new Date());
+        playerRepository.save(player);
+    }
+
+
 
 }
