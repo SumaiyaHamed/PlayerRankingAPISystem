@@ -1,6 +1,5 @@
 package com.PlayerRankingAPISystem.PlayerRankingAPISystem.Services;
 
-import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models.Player;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models.Score;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Repositories.ScoreRepository;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.RequestObject.ScoreRequestObject;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -33,5 +33,10 @@ public class ScoreService {
             foundScore=optionalScore.get();
         }
         return foundScore;
+    }
+
+
+    public List<Score> getAllScores() {
+        return scoreRepository.findAll();
     }
 }
