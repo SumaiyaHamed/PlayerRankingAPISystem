@@ -32,8 +32,15 @@ public class ScoreController {
         List<ScoreResponseObject> scoreResponseList = ScoreResponseObject.convertRequestListToResponseList(listOfScores);
         return scoreResponseList;
     }
-
-
+    @DeleteMapping(path = "{id}")
+    public String deleteSpecificScoreById(@PathVariable(name = "id") Long id) {
+        try {
+            scoreService.deleteSpecificScoreById(id);
+        } catch (Exception e) {
+            return "Deleting Failed Please Check The Id";
+        }
+        return " Score Id " + id + " Deleted Successfully ";
+    }
 
 
 }

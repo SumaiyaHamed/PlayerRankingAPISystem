@@ -41,7 +41,7 @@ public class PlayerController {
         } catch (Exception e) {
             return "Deleting Failed Please Check The Id";
         }
-        return " Customer Id " + id + " Deleted Successfully ";
+        return " Player Id " + id + " Deleted Successfully ";
     }
 @PutMapping
     public void updatePlayerDetails(@RequestBody PlayerRequestObject playerRequestObject) {
