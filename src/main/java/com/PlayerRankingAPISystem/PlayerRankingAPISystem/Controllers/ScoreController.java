@@ -22,5 +22,5 @@ public class ScoreController {
         return scoreService.AddScore(scoreRequestObject);
     }
 
-    
+
 }
