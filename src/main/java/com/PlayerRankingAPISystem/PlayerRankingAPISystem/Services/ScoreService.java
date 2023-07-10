@@ -1,9 +1,7 @@
 package com.PlayerRankingAPISystem.PlayerRankingAPISystem.Services;
 
-import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models.Player;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models.Score;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Repositories.ScoreRepository;
-import com.PlayerRankingAPISystem.PlayerRankingAPISystem.RequestObject.PlayerRequestObject;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.RequestObject.ScoreRequestObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
