@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -32,6 +33,7 @@ public class ScoreController {
         List<ScoreResponseObject> scoreResponseList = ScoreResponseObject.convertRequestListToResponseList(listOfScores);
         return scoreResponseList;
     }
+
     @DeleteMapping(path = "{id}")
     public String deleteSpecificScoreById(@PathVariable(name = "id") Long id) {
         try {
@@ -40,6 +42,11 @@ public class ScoreController {
             return "Deleting Failed Please Check The Id";
         }
         return " Score Id " + id + " Deleted Successfully ";
+    }
+
+    @PutMapping
+    public void updateScoreDetails(@RequestBody ScoreRequestObject scoreRequestObject) {
+        scoreService.updateScoreDetails(scoreRequestObject);
     }
 
 
