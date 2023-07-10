@@ -1,6 +1,5 @@
 package com.PlayerRankingAPISystem.PlayerRankingAPISystem.ResponseObject;
 
-import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models.Player;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models.Score;
 import lombok.Builder;
 import lombok.Data;
