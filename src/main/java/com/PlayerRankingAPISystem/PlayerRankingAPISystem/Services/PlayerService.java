@@ -19,11 +19,11 @@ public class PlayerService {
 @Autowired
     PlayerRepository playerRepository;
 
-    CopyOnWriteArrayList<Player> listOfStudents= new CopyOnWriteArrayList<>();
+    CopyOnWriteArrayList<Player> listOfPlayers = new CopyOnWriteArrayList<>();
 
     public ResponseEntity<Player> createPlayer( PlayerRequestObject playerRequestObject) {
         Player player = playerRequestObject.convert(playerRequestObject);
-        listOfStudents.add(player);
+        listOfPlayers.add(player);
         playerRepository.save(player);
         return ResponseEntity.ok(player);
     }
