@@ -20,6 +20,9 @@ public class Player extends BaseEntity{
 
     private String playerName;
 
+
+    private String rank;
+
     @OneToMany(mappedBy = "player", cascade = CascadeType.ALL)
     private List<Score> scores;
 

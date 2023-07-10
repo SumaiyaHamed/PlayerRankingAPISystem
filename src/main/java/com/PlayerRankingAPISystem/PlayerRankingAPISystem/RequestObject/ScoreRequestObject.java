@@ -17,13 +17,14 @@ public class ScoreRequestObject {
     private Long id;
 
     private int scoreValue;
-
+    private double averageScore;
 
     public static Score convert(ScoreRequestObject request) {
 
         Score score = new Score();
 
         score.setScoreValue(request.getScoreValue());
+        score.setAverageScore(request.getAverageScore());
         score.setIsActive(true);
         score.setCreatedDate(new Date());
         return score;

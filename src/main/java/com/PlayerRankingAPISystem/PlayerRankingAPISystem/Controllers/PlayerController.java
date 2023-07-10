@@ -4,6 +4,7 @@ import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models.Player;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.RequestObject.PlayerRequestObject;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.ResponseObject.PlayerResponseObject;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Services.PlayerService;
+import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Services.RankService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +14,12 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/players")
 public class PlayerController {
-
+    @Autowired
+    RankService rankService;
+    @Autowired
+    public PlayerController(RankService rankService) {
+        this.rankService = rankService;
+    }
     @Autowired
     PlayerService playerService;
 
@@ -46,6 +52,12 @@ public class PlayerController {
 @PutMapping
     public void updatePlayerDetails(@RequestBody PlayerRequestObject playerRequestObject) {
         playerService.updatePlayerDetails(playerRequestObject);
+    }
+
+
+    @GetMapping("/{averageScore}/rank")
+    public String determineRank(@PathVariable double averageScore) {
+        return rankService.determineRank(averageScore);
     }
 
 

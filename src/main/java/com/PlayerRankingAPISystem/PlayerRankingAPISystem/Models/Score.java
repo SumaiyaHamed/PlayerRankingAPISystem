@@ -19,6 +19,8 @@ public class Score extends BaseEntity{
 
     private int scoreValue;
 
+    private double averageScore;
+
 
 
     @ManyToOne(fetch = FetchType.LAZY)

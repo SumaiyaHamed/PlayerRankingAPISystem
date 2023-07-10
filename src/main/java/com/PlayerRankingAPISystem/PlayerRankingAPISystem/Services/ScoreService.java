@@ -56,4 +56,6 @@ public class ScoreService {
         score.setUpdatedDate(new Date());
         scoreRepository.save(score);
     }
+
+    
 }

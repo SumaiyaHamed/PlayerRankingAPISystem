@@ -18,12 +18,15 @@ public class PlayerRequestObject {
 
     private String playerName;
 
+    private String rank;
+
 
     public static Player convert(PlayerRequestObject request) {
 
         Player player = new Player();
 
         player.setPlayerName(request.getPlayerName());
+        player.setRank(request.getRank());
         player.setIsActive(true);
         player.setCreatedDate(new Date());
         return player;
