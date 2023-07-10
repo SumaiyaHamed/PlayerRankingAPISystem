@@ -20,7 +20,7 @@ public class Score extends BaseEntity{
 
     private int scoreValue;
 
-    private Date timestamp;
+
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "player_id", nullable = false)
