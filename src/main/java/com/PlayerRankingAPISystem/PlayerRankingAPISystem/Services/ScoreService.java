@@ -39,4 +39,11 @@ public class ScoreService {
     public List<Score> getAllScores() {
         return scoreRepository.findAll();
     }
+
+    public String deleteSpecificScoreById(Long id) {
+        Score score = scoreRepository.getScoreById(id);
+        score.setIsActive(false);
+        scoreRepository.save(score);
+        return "Score Id " + id + "Deleted Successfully ";
+    }
 }
