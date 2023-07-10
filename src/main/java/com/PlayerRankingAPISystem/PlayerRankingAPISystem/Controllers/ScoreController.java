@@ -9,7 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping(value = "/api/scores")
@@ -48,6 +50,13 @@ public class ScoreController {
     public void updateScoreDetails(@RequestBody ScoreRequestObject scoreRequestObject) {
         scoreService.updateScoreDetails(scoreRequestObject);
     }
-
-
+@GetMapping(path = "{playerId}")
+    public double calculateAverageScore(@PathVariable(name = "playerId")Long playerId) {
+        return scoreService.calculateAverageScore(playerId);
+    }
+    @GetMapping(path = "getPlayers")
+    public Map<Long, Double> calculateAverageScoreForAllPlayers(@RequestBody List<Long> playerIds){
+//        Map<Long, Double> avgScoreMap = new HashMap<>();
+        return scoreService.calculateAverageScoreForAllPlayers(playerIds);
+    }
 }

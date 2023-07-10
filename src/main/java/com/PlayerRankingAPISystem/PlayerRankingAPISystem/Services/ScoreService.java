@@ -2,6 +2,7 @@ package com.PlayerRankingAPISystem.PlayerRankingAPISystem.Services;
 
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models.Player;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Models.Score;
+import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Repositories.PlayerRepository;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.Repositories.ScoreRepository;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.RequestObject.PlayerRequestObject;
 import com.PlayerRankingAPISystem.PlayerRankingAPISystem.RequestObject.ScoreRequestObject;
@@ -9,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 @Service
@@ -19,6 +18,8 @@ public class ScoreService {
 
     @Autowired
     ScoreRepository scoreRepository;
+    @Autowired
+    PlayerRepository playerRepository;
 
     CopyOnWriteArrayList<Score> listOfScores = new CopyOnWriteArrayList<>();
 
@@ -57,5 +58,31 @@ public class ScoreService {
         scoreRepository.save(score);
     }
 
-    
+
+
+    public double calculateAverageScore(Long playerId) {
+        Player player = playerRepository.getPlayerById(playerId);
+
+        if (player == null) {
+            return 0.0; // Return 0 if no scores found for the player
+        }
+
+        int sum = 0;
+        for (Score score : player.getScores()) {
+            sum += score.getScoreValue();
+        }
+
+        return (double) sum / player.getScores().size();
+    }
+
+    public Map<Long, Double> calculateAverageScoreForAllPlayers(List<Long> playerIds){
+        Map<Long, Double> avgScoreMap = new HashMap<>();
+        for (Long playerId : playerIds) {
+            Double avgScoreOfPlayer = calculateAverageScore(playerId);
+            avgScoreMap.put(playerId, avgScoreOfPlayer.doubleValue());
+
+
+        }
+        return avgScoreMap;
+    }
 }
