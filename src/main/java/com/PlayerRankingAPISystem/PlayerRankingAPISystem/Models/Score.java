@@ -17,13 +17,13 @@ public class Score extends BaseEntity{
     @Id
     private Long id;
 
-    private int scoreValue;
+    private Integer scoreValue;
 
     private double averageScore;
 
 
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "player_id", nullable = false)
+    @JoinColumn(name = "player_id", nullable = true)
     private Player player;
 }

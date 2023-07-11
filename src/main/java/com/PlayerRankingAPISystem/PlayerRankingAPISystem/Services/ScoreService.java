@@ -60,7 +60,7 @@ public class ScoreService {
 
 
 
-    public double calculateAverageScore(Long playerId) {
+    public Double calculateAverageScore(Long playerId) {
         Player player = playerRepository.getPlayerById(playerId);
 
         if (player == null) {
@@ -73,6 +73,7 @@ public class ScoreService {
         }
 
         return (double) sum / player.getScores().size();
+        //return playerRepository.getAverageScore(playerId);
     }
 
     public Map<Long, Double> calculateAverageScoreForAllPlayers(List<Long> playerIds){
@@ -84,5 +85,13 @@ public class ScoreService {
 
         }
         return avgScoreMap;
+    }
+
+    public Double calculateAverageScoreForAllPlayersOnTeam(List<Player> playerIds){
+        Double avgScoreOfPlayerTeam = 0.0d;
+        for (Player player : playerIds) {
+            avgScoreOfPlayerTeam += calculateAverageScore(player.getId());
+        }
+        return avgScoreOfPlayerTeam;
     }
 }

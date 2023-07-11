@@ -12,7 +12,8 @@ public interface PlayerRepository extends JpaRepository<Player, Long> {
     @Query("select p from players p where p.id = :playerId")
     Player getPlayerById(@Param("playerId") Long id);
 
-
+//    @Query("SELECT AVG(s.score_value) FROM scores s WHERE s.player_id = :id")
+//    double getAvarageScore(@Param("id") Long id);
 
 
 }

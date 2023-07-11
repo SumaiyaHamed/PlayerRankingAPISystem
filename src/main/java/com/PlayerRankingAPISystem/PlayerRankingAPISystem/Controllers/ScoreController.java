@@ -50,9 +50,9 @@ public class ScoreController {
     public void updateScoreDetails(@RequestBody ScoreRequestObject scoreRequestObject) {
         scoreService.updateScoreDetails(scoreRequestObject);
     }
-@GetMapping(path = "{playerId}")
-    public double calculateAverageScore(@PathVariable(name = "playerId")Long playerId) {
-        return scoreService.calculateAverageScore(playerId);
+@GetMapping(path = "getPlayerAverageScore/{playerId}")
+    public Integer calculateAverageScore(@PathVariable(name = "playerId")Integer playerId) {
+        return scoreService.calculateAverageScore(playerId.longValue()).intValue();
     }
     @GetMapping(path = "getPlayers")
     public Map<Long, Double> calculateAverageScoreForAllPlayers(@RequestBody List<Long> playerIds){
