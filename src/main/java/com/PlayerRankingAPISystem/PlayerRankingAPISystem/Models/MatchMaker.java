@@ -12,11 +12,12 @@ import javax.persistence.*;
 @Setter
 @Data
 @Table(name = "matchMarker")
-public class MatchMarker extends BaseEntity{
+public class MatchMaker extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     @Id
     private Long id;
+
 
     private boolean isAdmin;
 
